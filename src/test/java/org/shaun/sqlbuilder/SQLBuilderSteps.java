@@ -8,6 +8,7 @@ package org.shaun.sqlbuilder;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -23,9 +24,14 @@ public class SQLBuilderSteps {
         builder = builder.table(table);
     }
 
-    @When("all the records are selected")
+    @When("all the fields are selected")
     public void selectAll() {
         builder = builder.select();
+    }
+
+    @When("fields (.+) are selected")
+    public void selectAll(List<String> fields) {
+        builder = builder.select(fields);
     }
     
     @Then("the returned statement will be '(.+)'")
